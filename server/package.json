@@ -1,0 +1,12 @@
+{
+  "type": "module",
+  "dependencies": {
+    "express": "^5.2.1",
+    "msgpack-lite": "^0.1.26",
+    "path": "^0.12.7",
+    "ws": "^8.19.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}

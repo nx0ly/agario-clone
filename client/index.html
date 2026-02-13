@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+    <head>
+        <title>agar.io</title>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            #gameCanvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            #mainMenu {
+                z-index: 99;
+            }
+        </style>
+    </head>
+
+    <body>
+        <canvas id="gameCanvas"></canvas>
+
+        <div id="mainMenu">
+            <input id="nameField" placeholder="Enter Name..." />
+            <button id="spawn">spawn</button>
+        </div>
+
+        <!-- msgpack serialization CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/msgpack-lite/0.1.26/msgpack.min.js"></script>
+
+        <script>
+            let canvas = document.getElementById("gameCanvas");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            canvas.style.width = `${canvas.width}px`;
+            canvas.style.height = `${canvas.height}px`;
+            canvas.style.zIndex = "-99";
+
+            window.addEventListener("resize", () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                canvas.style.width = `${canvas.width}px`;
+                canvas.style.height = `${canvas.height}px`;
+                canvas.style.zIndex = "-99";
+            });
+        </script>
+        <script src="script.js" type="module"></script>
+    </body>
+</html>
