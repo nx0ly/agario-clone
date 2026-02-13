@@ -6,6 +6,12 @@ import { CONFIG } from "../shared/config.js";
 import express from "express";
 import path from "path";
 import Blob from "../shared/blob.js";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+// workaround to get __dirname in es
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // creates a new express application
 const app = express();
