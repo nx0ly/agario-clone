@@ -3,7 +3,12 @@ import { CONFIG } from "../shared/config.js";
 import Player from "../shared/player.js";
 
 // creates a websocket connection to localhost
-const socket = new WebSocket("ws://localhost:8080");
+const host =
+  window.location.hostname === "localhost"
+    ? "localhost:3000"
+    : window.location.host;
+const protocol = window.location.protocol === "https:" ? "wss" : "ws";
+const socket = new WebSocket(`${protocol}://${host}`);
 socket.binaryType = "arraybuffer";
 
 // variable representing the movement direction
