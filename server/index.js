@@ -8,13 +8,18 @@ import path from "path";
 import Blob from "../shared/blob.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import http from "http";
 
 // workaround to get __dirname in es
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+const port = process.env.PORT || 3000;
+
 // creates a new express application
 const app = express();
+
+let httpServer = http.createServer(app);
 
 // adds a "hook" to / page
 app.get("/", (req, res) => {
@@ -29,8 +34,8 @@ app.use(express.static(path.join(__dirname, "../client")));
 app.use("/shared", express.static(path.join(__dirname, "../shared")));
 
 // makes the express application listen on port 3000 (standard port)
-app.listen(3000, () => {
-  console.log("express server running on port 3000");
+httpServer.listen(3000, () => {
+  console.log("server running on port 3000");
 });
 
 // player ids
@@ -38,10 +43,8 @@ let ids = Array.from({ length: 60 }, (_, i) => i);
 
 // creates a websocket server on port 8080 (standard port)
 const wss = new WebSocketServer({
-  port: 8080,
+  server: httpServer,
 });
-
-console.log("websocket server running on port 8080");
 
 // used to store all the player objects
 let players = [];

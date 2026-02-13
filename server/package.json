@@ -2,6 +2,7 @@
   "type": "module",
   "dependencies": {
     "express": "^5.2.1",
+    "http": "^0.0.1-security",
     "msgpack-lite": "^0.1.26",
     "path": "^0.12.7",
     "url": "^0.11.4",
