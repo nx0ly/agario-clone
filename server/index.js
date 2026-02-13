@@ -1,11 +1,11 @@
 // imports
 import { WebSocketServer } from "ws";
 import { encode, decode } from "msgpack-lite";
-import Player from "../shared/player";
-import { CONFIG } from "../shared/config";
+import Player from "../shared/player.js";
+import { CONFIG } from "../shared/config.js";
 import express from "express";
 import path from "path";
-import Blob from "../shared/blob";
+import Blob from "../shared/blob.js";
 
 // creates a new express application
 const app = express();
