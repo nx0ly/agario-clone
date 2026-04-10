@@ -52,6 +52,7 @@ let players = [];
 // used to store all the eatable blobs
 let xpBlobs = [];
 
+// function that spawns an xp blob using the specified arguments.
 function addXPBlob(id, x, y) {
   let blob = new Blob(id, x, y, false);
 
@@ -189,7 +190,7 @@ wss.on("connection", (client) => {
         ]);
 
         // also send xp blobs
-        for (const blob of xpBlobs) {
+        for (const blob of xpBlobs.filter(blob => Math.hypot(blob.y - player.y, blob.x - player.x) <= 3000) {
           broadcast(encode(["addBlob", [blob.id, blob.x, blob.y, blob.scale]]));
         }
 
@@ -201,7 +202,7 @@ wss.on("connection", (client) => {
             player.y,
             player.name,
             player.color,
-            player.blobs.flatMap((y) => [y?.id, y?.x, y?.y, y?.scale]),
+            player.blobs.filter(blob => Math.hypot(blob.y - player.y, blob.x - player.x) <= 3000).flatMap((y) => [y?.id, y?.x, y?.y, y?.scale]),
           ];
 
           client.send(encode(["addPlayer", [broadcastData, false]]));
