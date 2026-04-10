@@ -190,7 +190,7 @@ wss.on("connection", (client) => {
         ]);
 
         // also send xp blobs
-        for (const blob of xpBlobs.filter(blob => Math.hypot(blob.y - player.y, blob.x - player.x) <= 3000) {
+        for (const blob of xpBlobs.filter(blob => Math.hypot(blob.y - player.y, blob.x - player.x) <= 3000)) {
           broadcast(encode(["addBlob", [blob.id, blob.x, blob.y, blob.scale]]));
         }
 
